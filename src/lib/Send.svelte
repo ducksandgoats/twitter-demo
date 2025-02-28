@@ -10,13 +10,13 @@
   let bt = $state('')
   let text = $state('')
   let elem = $state(null)
+  let el = $state(null)
   function reset(e){
     console.log(e)
     elem.value = ''
   }
   async function send(e){
     e.preventDefault()
-    const el = elem.files
     if(!el.length && !text){
       return
     }
@@ -68,7 +68,7 @@
             <Input type="text" bind:value={reply} placeholder="post ids, optional, comma separated"></Input>
             <Input type="text" bind:value={tags} placeholder="tags, optional, comma separated"></Input>
         </Row>
-        <Input type="file" name="file" bind:this={elem} multiple/>
+        <Input type="file" name="file" bind:files={el} multiple/>
         <Button type="button" on:click={reset}>Reset</Button>
         <!-- {#if elem.files.length} -->
             {#each ['bt:', 'ipfs:', 'hyper:'] as value}
