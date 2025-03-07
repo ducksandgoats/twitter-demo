@@ -5,6 +5,6 @@ const obj = {'bt:': 'msg:', 'hyper:': 'topic:', 'ipfs:': 'pubsub:'}
 const proto = 'msg:'
 // const id = window.location.hostname
 const id = 'testing'
-const dexie = new Dexie({debug: true, version: 1, proto, id, name: 'test', schema: {posts: 'iden, stamp, edit, user, text, *list, *for, *tags'}, sync: true})
+const dexie = new Dexie({debug: true, ben: 'str', version: 1, proto, id, name: 'test', schema: {posts: 'iden, stamp, edit, user, text, *list, *for, *tags'}, sync: true})
 setTimeout(() => {dexie.initUser().then(console.log).catch(console.error)}, 10000)
 export {dexie}
