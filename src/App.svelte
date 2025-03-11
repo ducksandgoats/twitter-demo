@@ -1,37 +1,40 @@
 <script>
   import {Container} from '@sveltestrap/sveltestrap'
-  import { route, Router } from "@mateothegreat/svelte5-router";
-  import Home from './lib/Home.svelte'
-  import Err from './lib/Err.svelte'
+  import {Router} from 'svelte-mini-router';
+  import Nav from './lib/Nav.svelte'
 
-  const routes = [
-    // Exact path
-    {path: '/', component: Home},
+  const routerConf = {
+    routes: [
+        // this is your home page
+        {path: '/', render: () => import('./lib/Home.svelte')},
 
-    // Catch-all
-    // This is optional, but if present it must be the last
-    {path: '.*', component: Err},
-]
+        // another page
+        {path: '/posts/{post}', render: () => import('./lib/Posts.svelte')},
+
+        {path: '/search', render: () => import('./lib/Search.svelte')},
+
+        {path: '/users/{user}', render: () => import('./lib/Users.svelte')},
+
+        // nested routes are up to you
+        {path: '/tags/{tag}', render: () => import('./lib/Tags.svelte')},
+
+        // you can use path parameters anywhere
+        // {path: '/foo/{name}/and/{age}', render: () => import('./pages/page1/Page1.svelte')},
+    ],
+
+    // if you use a base URL, set it here; optional
+    // baseUrl: '/my-web-application',
+
+    // error 404 route; optional
+    // if not defined, a simple "404 - Not found" text will be displayed
+    render404: () => import('./lib/Err.svelte')
+};
 </script>
 
 <Container fluid>
-  <Router {routes}/>
+  <Nav/>
+  <Router {routerConf}/>
 </Container>
 
 <style>
-  /* .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  } */
 </style>

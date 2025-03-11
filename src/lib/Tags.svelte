@@ -4,8 +4,9 @@
     import {dexie} from '../dir/data.js'
     import Post from './Post.svelte'
     import Send from './Send.svelte'
-
-    let {params} = $props()
+    import {getPathParams} from 'svelte-mini-router';
+    
+    const pathParams = getPathParams();
 
     let pageNumber = $state(0)
     let pageSize = $state(10)
@@ -18,7 +19,7 @@
       if(pageNumber > 0){
         pageNumber = pageNumber - 1
       }
-      arr = await dexie.table('posts').where('tags').equals(params.tag)
+      arr = await dexie.table('posts').where('tags').equals(pathParams.tag)
       .reverse()
       .offset(pageNumber * pageSize)
       .limit(pageSize)
@@ -28,7 +29,7 @@
     async function up(e){
       console.log(e)
       pageNumber = pageNumber + 1
-      arr = await dexie.table('posts').where('tags').equals(params.tag)
+      arr = await dexie.table('posts').where('tags').equals(pathParams.tag)
       .reverse()
       .offset(pageNumber * pageSize)
       .limit(pageSize)
@@ -40,12 +41,12 @@
       posts = posts
     }
   
-    (async () => {count = await dexie.table('posts').count();console.log(count);arr = await dexie.table('posts').reverse().offset(pageNumber * pageSize).limit(pageSize).toArray();})().then(console.log).catch(console.error);
+    (async () => {count = await dexie.table('posts').where('tags').equals(pathParams.tag).count();console.log(count);arr = await dexie.table('posts').where('tags').equals(pathParams.tag).reverse().offset(pageNumber * pageSize).limit(pageSize).toArray();})().then(console.log).catch(console.error);
   </script>
   
   <Row>
     <Col>
-      <Send func={handleSend} replyProp={null} tagProp={null}/>
+      <Send func={handleSend} replyProp={null} tagProp={pathParams.tag}/>
     </Col>
   </Row>
   
@@ -67,8 +68,8 @@
   
   <Row>
     <Col>
-    <Row>
-      <Col>
+    <Row class="align-items-center justify-content-center" cols={{ lg: 3, md: 2, sm: 1 }}>
+      <Col class="text-center">
         <p>go through posts</p>
         {#if pageNumber > 0}
           <Button type="button" on:click={down}>←</Button>
@@ -79,8 +80,8 @@
         {/if}
       </Col>
     </Row>
-    <Row>
-      <Col>
+    <Row class="align-items-center justify-content-center" cols={{ lg: 3, md: 2, sm: 1 }}>
+      <Col class="text-center">
         <p>size of results</p>
         <Input bind:value={pageSize} type="number"></Input>
       </Col>

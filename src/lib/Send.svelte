@@ -61,8 +61,8 @@
   };
 </script>
 
-<Row>
-    <Col>
+<Row class="align-items-center justify-content-center" cols={{ lg: 3, md: 2, sm: 1 }}>
+    <Col class="text-center">
         <Form on:submit={send}>
         <Row>
             <Input type="text" bind:value={reply} placeholder="post ids, optional, comma separated"></Input>

@@ -64,8 +64,8 @@
 
 <Row>
   <Col>
-  <Row>
-    <Col>
+  <Row class="align-items-center justify-content-center" cols={{ lg: 3, md: 2, sm: 1 }}>
+    <Col class="text-center">
       <p>go through posts</p>
       {#if pageNumber > 0}
         <Button type="button" on:click={down}>←</Button>
@@ -76,8 +76,8 @@
       {/if}
     </Col>
   </Row>
-  <Row>
-    <Col>
+  <Row class="align-items-center justify-content-center" cols={{ lg: 3, md: 2, sm: 1 }}>
+    <Col class="text-center">
       <p>size of results</p>
       <Input bind:value={pageSize} type="number"></Input>
     </Col>
