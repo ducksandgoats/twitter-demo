@@ -11,3 +11,9 @@
     border-style: solid;
     border-color: black;
 }
+
+.maxer-sizer {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}

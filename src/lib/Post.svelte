@@ -48,7 +48,7 @@
   }
 </script>
 
-<Row class="m-1 p-1 align-items-center justify-content-center post-row" cols={{ lg: 3, md: 2, sm: 1 }}>
+<Row class="m-1 p-1 align-items-center justify-content-center post-row">
     <Col class="m-1 p-1 text-center post-column">
         {#if post.for}
         {#if showTo}
@@ -71,11 +71,11 @@
       {/if}
       {#each post.list as link}
         {#if vid(link.slice(link.lastIndexOf('.')))}
-          <video src={link} controls><track kind="captions"></video>
+          <video src={link} controls><track kind="captions" class="maxer-sizer"></video>
         {:else if aud(link.slice(link.lastIndexOf('.')))}
-          <audio src={link} controls></audio>
+          <audio src={link} controls class="maxer-sizer"></audio>
         {:else if pic(link.slice(link.lastIndexOf('.')))}
-          <img src={link} alt={link}>
+          <img src={link} alt={link} class="maxer-sizer"/>
         {:else}
           <p>file not supported</p>
         {/if}
@@ -90,6 +90,7 @@
       <Self post={post}/>
       {/each}
       {/if}
+      <Button on:click={replyFromFunc}>Show Reply From</Button>
       {#if showFrom}
       {#if replyFrom.length}
       {#each replyFrom as post}
@@ -97,6 +98,5 @@
       {/each}
       {/if}
       {/if}
-      <Button on:click={replyFromFunc}>Show Reply From</Button>
     </Col>
 </Row>
