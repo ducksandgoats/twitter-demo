@@ -10,7 +10,7 @@
 </script>
   
 <Navbar color="light" light expand="md" container="md">
-<NavbarBrand><Link path="/">Test</Link></NavbarBrand>
+<NavbarBrand><Link path="/index.html">Test</Link></NavbarBrand>
 <Nav class="ms-auto" navbar>
 <NavItem><Link path="/search">Search</Link></NavItem>
 </Nav>

@@ -8,6 +8,8 @@
         // this is your home page
         {path: '/', render: () => import('./lib/Home.svelte')},
 
+        {path: '/index.html', render: () => import('./lib/Home.svelte')},
+
         // another page
         {path: '/posts/{post}', render: () => import('./lib/Posts.svelte')},
 
