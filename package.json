@@ -18,7 +18,7 @@
   "dependencies": {
     "@sveltestrap/sveltestrap": "^7.1.0",
     "bootstrap": "^5.3.3",
-    "relay-dexie": "^4.0.9",
+    "relay-dexie": "^5.0.3",
     "svelte-mini-router": "^1.0.4"
   }
 }
