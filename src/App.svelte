@@ -15,6 +15,8 @@
 
         {path: '/search', render: () => import('./lib/Search.svelte')},
 
+        {path: '/sync', render: () => import('./lib/Sync.svelte')},
+
         {path: '/users/{user}', render: () => import('./lib/Users.svelte')},
 
         // nested routes are up to you
