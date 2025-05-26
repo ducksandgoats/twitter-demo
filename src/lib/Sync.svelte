@@ -17,7 +17,11 @@
 <Row>
     <Col>
         {#if routine}
-        <p><Button on:click={(e) => {console.log(e);dexie.turnOffInterval();routine = Boolean(dexie._routine);}}>Stop</Button></p>
+        <Row>
+            <Col>
+                <Button on:click={(e) => {console.log(e);dexie.turnOffInterval();routine = Boolean(dexie._routine);}}>Stop</Button>
+            </Col>
+        </Row>
         {:else}
         <Row>
             <Col>
@@ -27,7 +31,7 @@
                 <Input type="switch" label="Sync" bind:checked={sync}/>
             </Col>
             <Col>
-                <Input type="number" placeholder={timer} bind:value={timer}/>
+                <Input type="number" placeholder={String(timer)} bind:value={timer}/>
             </Col>
             <Col>
                 <Button on:click={(e) => {console.log(e);dexie.changeOpts({sync, timer, count});timer = dexie._timer;sync = dexie._sync;count = dexie._count;}}>Change</Button>
@@ -42,7 +46,11 @@
         <Row>
             <Col>
                 {#each idens as iden}
-                    <p>{iden}: <Input type="number" placeholder="number placeholder"/><Button on:click={(e) => {console.log(e);dexie.doSync(iden, false, count).then(console.log).catch(console.error);}}>User</Button><Button on:click={(e) => {console.log(e);dexie.doSync(iden, true, count).then(console.log).catch(console.error);}}>Sync</Button></p>
+                <Row>
+                    <Col>
+                        {iden}: <Input type="number" placeholder="number placeholder"/><Button on:click={(e) => {console.log(e);dexie.doSync(iden, false, count).then(console.log).catch(console.error);}}>User</Button><Button on:click={(e) => {console.log(e);dexie.doSync(iden, true, count).then(console.log).catch(console.error);}}>Sync</Button>
+                    </Col>
+                </Row>
                 {/each}
             </Col>
         </Row>
