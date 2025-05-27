@@ -48,7 +48,7 @@
                 {#each idens as iden}
                 <Row>
                     <Col>
-                        {iden}: <Input type="number" placeholder="number placeholder"/><Button on:click={(e) => {console.log(e);dexie.doSync(iden, false, count).then(console.log).catch(console.error);}}>User</Button><Button on:click={(e) => {console.log(e);dexie.doSync(iden, true, count).then(console.log).catch(console.error);}}>Sync</Button>
+                        {iden}: <Button on:click={(e) => {console.log(e);dexie.doSync(iden, false, count).then(console.log).catch(console.error);}}>User</Button><Button on:click={(e) => {console.log(e);dexie.doSync(iden, true, count).then(console.log).catch(console.error);}}>Sync</Button>
                     </Col>
                 </Row>
                 {/each}
